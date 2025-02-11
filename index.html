@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Lilac Card 💜 RAI</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #fceff5, #e3b5d6);
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+            overflow: hidden;
+        }
+        
+        .card {
+            width: 320px;
+            height: 460px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lilac {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .petal {
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #b57edc, #7a4ea3);
+            border-radius: 50%;
+            position: absolute;
+            opacity: 0.8;
+            animation: floatLilac 3s infinite alternate ease-in-out;
+        }
+
+        .petal:nth-child(1) { top: 0px; left: 0px; }
+        .petal:nth-child(2) { top: -10px; left: 15px; }
+        .petal:nth-child(3) { top: 10px; left: 15px; }
+        .petal:nth-child(4) { top: 0px; left: 30px; }
+        .petal:nth-child(5) { top: -20px; left: 5px; }
+        .petal:nth-child(6) { top: 20px; left: 5px; }
+
+        @keyframes floatLilac {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(5px); }
+        }
+
+        .falling-petal {
+            width: 10px;
+            height: 10px;
+            background: #b57edc;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        h2 {
+            color: #7a4ea3;
+            margin-top: 120px;
+            font-size: 22px;
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            color: #444;
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        button {
+            background: #a74ac7;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: 0.3s;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        button:hover {
+            background: #7a4ea3;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="lilac">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+        </div>
+        <h2>Happy Valentine's Day! 💜 Rai </h2>
+        <p>Click below for a surprise!</p>
+        <button onclick="revealMessage()">Reveal Message</button>
+        <p class="hidden-message" id="message">You make my world bloom like lilacs in spring! 🌸💜</p>
+    </div>
+
+    <script>
+        function revealMessage() {
+            document.getElementById("message").style.display = "block";
+        }
+
+        function createFallingPetals() {
+            for (let i = 0; i < 20; i++) {
+                let petal = document.createElement("div");
+                petal.classList.add("falling-petal");
+                petal.style.left = Math.random() * 100 + "vw";
+                petal.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(petal);
+                setTimeout(() => petal.remove(), 5000);
+            }
+        }
+
+        setInterval(createFallingPetals, 1000);
+    </script>
+</body>
+</html>
